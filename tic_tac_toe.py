@@ -30,25 +30,28 @@ def winner(player_sign):
 
 print_field()
 
+# Основной цикл выполнения программы
 while True:
     # Ход первого игрока
-    player1 = input('Введите слитно номер строки и столбца (от 1 до 3), куда нужно поставить крестик: ')
-    line_number = int(player1[0])
-    column_number = int(player1[1])
 
+    # Цикл для работы с исключениями
     while True:
-        if 1 <= line_number <= 3 and 1 <= column_number <= 3:
-            if field[line_number][column_number] == '-':
-                field[line_number][column_number] = 'x'
-                break
-            else:
-                player1 = input('Это поле уже занято, попробуйте еще раз: ')
-                line_number = int(player1[0])
-                column_number = int(player1[1])
-        else:
-            player1 = input('Нужно вводить числа от 1 до 3, попробуйте еще раз: ')
+        try:
+            player1 = input('Введите слитно номер строки и столбца (от 1 до 3), куда нужно поставить крестик: ')
             line_number = int(player1[0])
             column_number = int(player1[1])
+
+            if 1 <= line_number <= 3 and 1 <= column_number <= 3:
+                if field[line_number][column_number] == '-':
+                    field[line_number][column_number] = 'x'
+                    break
+                else:
+                    print('Это поле уже занято, попробуйте еще раз')
+            else:
+                print('Неправильный диапазон - нужно вводить числа от 1 до 3')
+        except ValueError or IndexError:
+            print('Нужно вводить числа от 1 до 3!')
+
     print_field()
 
     if winner('x') == 'x':
@@ -56,23 +59,22 @@ while True:
         break
 
     # Ход второго игрока
-    player2 = input('Введите слитно номер строки и столбца (от 1 до 3), куда нужно поставить нолик: ')
-    line_number = int(player2[0])
-    column_number = int(player2[1])
-
     while True:
-        if 1 <= line_number <= 3 and 1 <= column_number <= 3:
-            if field[line_number][column_number] == '-':
-                field[line_number][column_number] = 'o'
-                break
-            else:
-                player2 = input('Это поле уже занято, попробуйте еще раз: ')
-                line_number = int(player2[0])
-                column_number = int(player2[1])
-        else:
-            player2 = input('Нужно вводить числа от 1 до 3, попробуйте еще раз: ')
+        try:
+            player2 = input('Введите слитно номер строки и столбца (от 1 до 3), куда нужно поставить нолик: ')
             line_number = int(player2[0])
             column_number = int(player2[1])
+            if 1 <= line_number <= 3 and 1 <= column_number <= 3:
+                if field[line_number][column_number] == '-':
+                    field[line_number][column_number] = 'o'
+                    break
+                else:
+                    print('Это поле уже занято, попробуйте еще раз')
+            else:
+                print('Неправильный диапазон - нужно вводить числа от 1 до 3')
+        except ValueError or IndexError:
+            print('Нужно вводить числа от 1 до 3!')
+
     print_field()
 
     if winner('o') == 'o':
