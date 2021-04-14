@@ -28,54 +28,41 @@ def winner(player_sign):
         return player_sign
 
 
-print_field()
-
-# Основной цикл выполнения программы
-while True:
-    # Ход первого игрока
-
+def player_turn(player_sign):
+    """ Ход одного из игроков """
     # Цикл для работы с исключениями
     while True:
         try:
-            player1 = input('Введите слитно номер строки и столбца (от 1 до 3), куда нужно поставить крестик: ')
-            line_number = int(player1[0])
-            column_number = int(player1[1])
+            player = input('Введите слитно номер строки и столбца (от 1 до 3), куда нужно поставить крестик: ')
+            line_number = int(player[0])
+            column_number = int(player[1])
 
             if 1 <= line_number <= 3 and 1 <= column_number <= 3:
                 if field[line_number][column_number] == '-':
-                    field[line_number][column_number] = 'x'
+                    field[line_number][column_number] = player_sign
                     break
                 else:
                     print('Это поле уже занято, попробуйте еще раз')
             else:
                 print('Неправильный диапазон - нужно вводить числа от 1 до 3')
         except ValueError or IndexError:
-            print('Нужно вводить числа от 1 до 3!')
+            print('Нужно ввести 2 числа от 1 до 3!')
 
     print_field()
+
+
+print_field()
+# Основной цикл выполнения программы
+while True:
+    # Ход первого игрока
+    player_turn('x')
 
     if winner('x') == 'x':
         print('Победил первый игрок!')
         break
 
     # Ход второго игрока
-    while True:
-        try:
-            player2 = input('Введите слитно номер строки и столбца (от 1 до 3), куда нужно поставить нолик: ')
-            line_number = int(player2[0])
-            column_number = int(player2[1])
-            if 1 <= line_number <= 3 and 1 <= column_number <= 3:
-                if field[line_number][column_number] == '-':
-                    field[line_number][column_number] = 'o'
-                    break
-                else:
-                    print('Это поле уже занято, попробуйте еще раз')
-            else:
-                print('Неправильный диапазон - нужно вводить числа от 1 до 3')
-        except ValueError or IndexError:
-            print('Нужно вводить числа от 1 до 3!')
-
-    print_field()
+    player_turn('o')
 
     if winner('o') == 'o':
         print('Победил второй игрок!')
