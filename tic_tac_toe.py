@@ -45,8 +45,10 @@ def player_turn(player_sign):
                     print('Это поле уже занято, попробуйте еще раз')
             else:
                 print('Неправильный диапазон - нужно вводить числа от 1 до 3')
-        except ValueError or IndexError:
+        except ValueError:
             print('Нужно ввести 2 числа от 1 до 3!')
+        except IndexError:
+            print('Одного числа мало!')
 
     print_field()
 
