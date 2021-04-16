@@ -54,6 +54,7 @@ def player_turn(player_sign):
 
 
 print_field()
+count = 0
 # Основной цикл выполнения программы
 while True:
     # Ход первого игрока
@@ -63,9 +64,18 @@ while True:
         print('Победил первый игрок!')
         break
 
+    count += 1
+
+    if count >= 9:
+        print('Ничья!')
+        break
+
     # Ход второго игрока
     player_turn('o')
 
     if winner('o') == 'o':
         print('Победил второй игрок!')
         break
+
+    count += 1
+
