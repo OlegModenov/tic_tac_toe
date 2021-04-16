@@ -33,7 +33,7 @@ def player_turn(player_sign):
     # Цикл для работы с исключениями
     while True:
         try:
-            player = input('Введите слитно номер строки и столбца (от 1 до 3), куда нужно поставить крестик: ')
+            player = input(f'Введите слитно номер строки и столбца (от 1 до 3), куда нужно поставить {player_sign}: ')
             line_number = int(player[0])
             column_number = int(player[1])
 
